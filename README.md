@@ -7,3 +7,4 @@ Code for the paper **"Integrated approach to explore the microbial biodiversity 
 
 ## Used data
 - Reads can be retrieved from SRA, under accession **PRJNA916949**
+- Physicochemical parameter data can be found in the **data** folder of this repository
