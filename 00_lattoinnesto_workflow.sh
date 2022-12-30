@@ -3,12 +3,12 @@
 
 ##############################################
 #
-# Variables you will need to set
+# Variables you will need to set based on your file system
 #
-# BASEDIR=/projects/populus/ep/share/marroni/collaborations/lattoinnesto/
-# KRAKBIN=/projects/populus/ep/software/kraken2-2.1.2
-# BRACK_BIN=/projects/populus/ep/software/Bracken2
-# FUNCDIR=/projects/marroni/functions/lattoinnesto
+# BASEDIR=/base/project/folder/
+# KRAKBIN=/path/to/kraken2/executable
+# BRACK_BIN=/path/bracken/executable
+# FUNCDIR=/path/to/functions/folder/
 #
 ###############################################
 
