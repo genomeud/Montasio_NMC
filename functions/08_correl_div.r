@@ -1,4 +1,4 @@
-#Modified by Fabio Marroni on 2022/06/05
+#Modified by Fabio Marroni on 2023/04/30
 
 # Run with --help flag for help.
 suppressPackageStartupMessages({
@@ -88,7 +88,7 @@ correl<-function()
 	tcount<-merge(countdata,chemdata,by.x="row.names",by.y="row.names",sort=F)
 	row.names(tcount)<-tcount[,1]
 	tcount[,1]<-NULL
-	#Filter to remove values with "crazy" distributions.
+	#Filter to remove values with "crazy" distributions (i.e. too many zeros or zero variance).
 	#Count how many zeros
 	#We ask that we have less than 60% of 0s
 	zerocount<-apply(apply(tcount,1,">",0),1,sum,na.rm=T)
@@ -133,7 +133,7 @@ correl<-function()
 	}
 	
 	dev.off()
-	col2 = colorRampPalette(c('darkred', 'white', 'blue3')) 
+	col2 = colorRampPalette(c('red', 'white', 'blue3')) 
 	#Only select classes that have at least one significant result
 	if(usefdr) corp<-corf
 	sig<-corp<=0.05
@@ -144,7 +144,12 @@ correl<-function()
 	colnames(cormat)[colnames(cormat)=="simpson"]<-"Simpson"
 	colnames(cormat)[colnames(cormat)=="shannon"]<-"Shannon"
 	colnames(cormat)[colnames(cormat)=="pielou"]<-"Pielou"
+	row.names(cormat)[row.names(cormat)=="TreatTemp"]<-"Treatment\nTemperature [°C]"
+	row.names(cormat)[row.names(cormat)=="TreatTime (sec)"]<-"Treatment Time [s]"
+	row.names(cormat)[row.names(cormat)=="IncTemp"]<-"Incubation\nTemperature [°C]"
+	row.names(cormat)[row.names(cormat)=="IncTime (min)"]<-"Incubation Time [min]"
 	colnames(corp)<-colnames(cormat)
+	row.names(corp)<-row.names(cormat)
 	mytitle<-paste0("Correlation between ", gsub(".txt","",basename(chempar)), " and diversity indices")
 	pdf(gsub(".txt","_div.pdf",myfile))
 	corrplot(cormat, p.mat = corp, 
@@ -155,15 +160,7 @@ correl<-function()
          insig = 'label_sig', sig.level = c(0.05), cl.align.text ="l", cl.cex =0.7,
 		 mar=c(0,0.5,1.2,0.5),oma=c(0,0,0),
          pch.cex = 0.9, pch.col = 'black')
-	# corrplot(cormat, p.mat = corp, 
-         # tl.col="black", tl.cex=0.6,
-         # diag = TRUE, type = 'full',
-         # col=col2(256),method="color",
-         # insig = 'label_sig', sig.level = c(0.05), cl.align.text ="l", cl.cex =0.7,
-		 # mar=c(0,0.5,1.2,0.5),oma=c(0,0,0),
-         # pch.cex = 0.8, pch.col = 'black')
 	dev.off()
 	}
-	browser()
 }
 correl()
