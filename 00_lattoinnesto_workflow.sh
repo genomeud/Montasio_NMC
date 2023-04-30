@@ -253,58 +253,8 @@ Rscript ${FUNCDIR}/08_correl_div.r \
 done
 
 
-
-#Use silva results at the genus level
-# for INFILE in Acidi.txt aromi.txt pH.txt zuccheri.txt Treatment.txt
-# do
-# Rscript ${FUNCDIR}/08_correl_div.r \
-       # -D ${BASEDIR}/05_tables_silva/diversity.txt \
-	   # -O ${BASEDIR}/06_chempar_silva/ \
-	   # -C ${BASEDIR}/06_chempar/${INFILE}
-# done
-
-
-#Plot correlation like shown in Zheng et al 
-#Using minikraken
-Rscript ${FUNCDIR}/09_correl_network.r \
--A ${BASEDIR}/05_tables/bracken.txt \
--O ${BASEDIR}/06_chempar/ \
--r '' -g ${BASEDIR}/06_chempar/sugar_aroma_netcorr.pdf
-
-Rscript ${FUNCDIR}/09_correl_network.r \
--A ${BASEDIR}/05_tables/bracken.txt \
--O ${BASEDIR}/06_chempar/ \
--r 'Streptococcus thermophilus' -g ${BASEDIR}/06_chempar/sugar_aroma_nothermo_netcorr.pdf
-
-#In this version we remove all streptococci that are not thermophilus 
-#This is because they may be missclassified thermo 
-#Even if htye aren't, they behave similar to thermo for most properties and do not add information
-Rscript ${FUNCDIR}/09_correl_network.r \
--A ${BASEDIR}/05_tables/bracken.txt \
--O ${BASEDIR}/06_chempar/ \
--r 'Streptococcus agalactiae,Streptococcus anginosus,Streptococcus dysgalactiae,Streptococcus infantarius,Streptococcus iniae,Streptococcus marmotae,Streptococcus mutans,Streptococcus parauberis,Streptococcus pneumoniae,Streptococcus pyogenes,Streptococcus sobrinus,Streptococcus suis' \
--g ${BASEDIR}/06_chempar/sugar_aroma_onlythermo_netcorr.pdf
-
 #Using silva at the genus level
 Rscript ${FUNCDIR}/09_correl_network.r \
 -A ${BASEDIR}/05_tables_silva/genus_bracken.txt \
 -O ${BASEDIR}/06_chempar_silva/ \
 -r '' -g ${BASEDIR}/06_chempar_silva/sugar_aroma_netcorr.pdf
-
-Rscript ${FUNCDIR}/09_correl_network.r \
--A ${BASEDIR}/05_tables_silva/genus_bracken.txt \
--O ${BASEDIR}/06_chempar_silva/ \
--r 'Streptococcus' -g ${BASEDIR}/06_chempar_silva/sugar_aroma_nostrepto_netcorr.pdf
-
-################################################################################################
-#
-#  _____                                     _       _   _             
-# |  __ \                                   | |     | | (_)            
-# | |__) |_ _ _ __    ___ ___  _ __ _ __ ___| | __ _| |_ _  ___  _ __  
-# |  ___/ _` | '__|  / __/ _ \| '__| '__/ _ \ |/ _` | __| |/ _ \| '_ \ 
-# | |  | (_| | |    | (_| (_) | |  | | |  __/ | (_| | |_| | (_) | | | |
-# |_|   \__,_|_|     \___\___/|_|  |_|  \___|_|\__,_|\__|_|\___/|_| |_|
-#                                                                      
-################################################################################################
-                                                                      
-Rscript ${FUNCDIR}/10_par_cor.r
