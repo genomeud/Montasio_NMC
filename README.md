@@ -1,5 +1,6 @@
 # Montasio Natural Milk Culture
-Code for the paper **"Integrated approach to explore the microbial biodiversity of natural milk culture for Montasio cheese production"**
+Code for the paper **"Integrated approach to explore the microbial biodiversity of natural milk culture for Montasio cheese production"**, published in **Journal of Dairy Science** (https://doi.org/10.3168/jds.2024-24463).
+If you find the code useful, please cite the publication!
 
 ## Required software
 - R (we used R 3.6.1, any newer version should do)
